@@ -11,17 +11,17 @@ import android.widget.ListView;
 /**
  * Created by Yeray on 13/01/2015.
  */
-public class AsignaturasActivity extends ActionBarActivity {
+public class InformacionProfesoresActivity extends ActionBarActivity {
 
     ListView lista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_asignaturas);
+        setContentView(R.layout.layout_informacion_profesor);
 
 
-        lista = (ListView) findViewById(R.id.LvAsignaturas);
+        lista = (ListView) findViewById(R.id.LvInformacionProfesor);
 
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

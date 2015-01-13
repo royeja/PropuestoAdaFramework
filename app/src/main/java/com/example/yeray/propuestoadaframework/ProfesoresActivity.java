@@ -11,17 +11,17 @@ import android.widget.ListView;
 /**
  * Created by Yeray on 13/01/2015.
  */
-public class AsignaturasActivity extends ActionBarActivity {
+public class ProfesoresActivity extends ActionBarActivity {
 
     ListView lista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_asignaturas);
+        setContentView(R.layout.layout_profesores);
 
 
-        lista = (ListView) findViewById(R.id.LvAsignaturas);
+        lista = (ListView) findViewById(R.id.LvProfesores);
 
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -57,3 +57,5 @@ public class AsignaturasActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+
+

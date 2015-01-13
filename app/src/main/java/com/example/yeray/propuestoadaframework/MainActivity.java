@@ -1,8 +1,8 @@
 package com.example.yeray.propuestoadaframework;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,13 +36,12 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent i = new Intent(MainActivity.this,AsignaturasActivity.class);
+                Intent i = new Intent(MainActivity.this, AsignaturasActivity.class);
 
                 startActivity(i);
 
             }
         });
-
 
 
     }
