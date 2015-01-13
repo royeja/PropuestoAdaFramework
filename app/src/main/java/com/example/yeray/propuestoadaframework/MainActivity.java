@@ -1,8 +1,8 @@
 package com.example.yeray.propuestoadaframework;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,7 +12,7 @@ import android.widget.ListView;
 import com.example.yeray.propuestoadaframework.BD.ContextoAplicacionDatos;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
     ListView lista;
     private ContextoAplicacionDatos contexto;
@@ -62,7 +62,7 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.Nuevo_contacto) {
             return true;
         }
 

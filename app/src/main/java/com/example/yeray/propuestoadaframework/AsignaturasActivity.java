@@ -1,7 +1,7 @@
 package com.example.yeray.propuestoadaframework;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,7 +11,7 @@ import android.widget.ListView;
 /**
  * Created by Yeray on 13/01/2015.
  */
-public class AsignaturasActivity extends ActionBarActivity {
+public class AsignaturasActivity extends Activity {
 
     ListView lista;
 
@@ -50,7 +50,7 @@ public class AsignaturasActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.Nuevo_contacto) {
             return true;
         }
 
