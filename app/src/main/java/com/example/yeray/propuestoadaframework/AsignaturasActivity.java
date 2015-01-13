@@ -1,34 +1,34 @@
 package com.example.yeray.propuestoadaframework;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-
-public class MainActivity extends ActionBarActivity {
+/**
+ * Created by Yeray on 13/01/2015.
+ */
+public class AsignaturasActivity extends ActionBarActivity {
 
     ListView lista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.layout_asignaturas);
 
 
-        lista = (ListView) findViewById(R.id.LvAlumnos);
+        lista = (ListView) findViewById(R.id.LvAsignaturas);
 
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent i = new Intent(MainActivity.this,AsignaturasActivity.class);
 
-                startActivity(i);
 
             }
         });

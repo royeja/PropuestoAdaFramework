@@ -1,38 +1,25 @@
-package com.example.yeray.propuestoadaframework;
+package com.example.yeray.propuestoadaframework.BD;
 
-import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
-    ListView lista;
-
+    private ContextoAplicacionDatos contexto;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        lista = (ListView) findViewById(R.id.LvAlumnos);
-
-        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Intent i = new Intent(MainActivity.this,AsignaturasActivity.class);
-
-                startActivity(i);
-
-            }
-        });
-
+        try {
+            contexto=new ContextoAplicacionDatos(this);
+            contexto.profDao.fill("name");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
     }
@@ -51,12 +38,9 @@ public class MainActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }
