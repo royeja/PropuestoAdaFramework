@@ -7,7 +7,7 @@ import com.mobandme.ada.annotations.TableField;
 /**
  * Created by BrutslomPC on 08/01/2015.
  */
-@Table(name="asignatura")
+@Table(name = "asignatura")
 public class Asignatura extends Entity {
     @TableField(name = "numero_maximo_alumnos", datatype = DATATYPE_INTEGER)
     private int numero_maximo_alumnos;
@@ -16,7 +16,7 @@ public class Asignatura extends Entity {
     @TableField(name = "precio_hora", datatype = DATATYPE_INTEGER)
     private String precio_hora;
     @TableField(name = "id_profesor", datatype = DATATYPE_ENTITY_LINK)
-    private Profesor profesor;
+    private Integer profesor;
 
     public Asignatura() {
         super();
@@ -46,11 +46,11 @@ public class Asignatura extends Entity {
         this.precio_hora = precio_hora;
     }
 
-    public Profesor getProfesor() {
+    public Integer getProfesor() {
         return profesor;
     }
 
-    public void setProfesor(Profesor profesor) {
+    public void setProfesor(Integer profesor) {
         this.profesor = profesor;
     }
 }

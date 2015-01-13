@@ -33,14 +33,14 @@ public class alumno_por_curso extends Entity {
         this.id_Alumno = id_Alumno;
     }
 
-    public alumno_por_curso(){
+    public alumno_por_curso() {
         super();
     }
 
-    public alumno_por_curso(Integer id_curso, Integer id_Alumno){
+    public alumno_por_curso(Integer id_curso, Integer id_Alumno) {
         super();
-        this.id_curso=id_curso;
-        this.id_Alumno=id_Alumno;
+        this.id_curso = id_curso;
+        this.id_Alumno = id_Alumno;
     }
 }
 

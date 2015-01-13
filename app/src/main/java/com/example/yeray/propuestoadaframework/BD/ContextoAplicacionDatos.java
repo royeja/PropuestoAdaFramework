@@ -18,10 +18,10 @@ public class ContextoAplicacionDatos extends ObjectContext {
     public ContextoAplicacionDatos(Context pContext) throws Exception {
         super(pContext);
 
-            this.asigDao=new ObjectSet<Asignatura>(Asignatura.class,this);
-            this.profDao=new ObjectSet<Profesor>(Profesor.class,this);
-            this.alumnoDao=new ObjectSet<Alumno>(Alumno.class,this);
-            this.alumno_por_cursoDao=new ObjectSet<alumno_por_curso>(alumno_por_curso.class,this);
+        this.asigDao = new ObjectSet(Asignatura.class, this);
+        this.profDao = new ObjectSet(Profesor.class, this);
+        this.alumnoDao = new ObjectSet(Alumno.class, this);
+        this.alumno_por_cursoDao = new ObjectSet(alumno_por_curso.class, this);
     }
 
 }

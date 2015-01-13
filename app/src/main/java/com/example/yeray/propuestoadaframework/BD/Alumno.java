@@ -11,7 +11,7 @@ import java.util.Date;
  */
 
 @Table(name = "Alumno")
-public class Alumno extends Entity{
+public class Alumno extends Entity {
 
     @TableField(name = "nombre", datatype = DATATYPE_TEXT, required = true)
     private String nombre;
@@ -21,23 +21,23 @@ public class Alumno extends Entity{
     private String dni;
     @TableField(name = "fecha_alta", datatype = DATATYPE_DATE, required = true)
     private Date fecha_alta;
-    @TableField(name="edad",datatype = DATATYPE_INTEGER,required = true)
+    @TableField(name = "edad", datatype = DATATYPE_INTEGER, required = true)
     private Integer edad;
-    @TableField(name="activo",datatype = DATATYPE_BOOLEAN,required = true)
+    @TableField(name = "activo", datatype = DATATYPE_BOOLEAN, required = true)
     private Boolean activo;
 
-    public Alumno(){
+    public Alumno() {
         super();
     }
 
-    public Alumno(String nombre,String apellido,String dni,Date fecha_alta,Integer edad,Boolean activo){
+    public Alumno(String nombre, String apellido, String dni, Date fecha_alta, Integer edad, Boolean activo) {
         super();
-        this.nombre=nombre;
-        this.apellido=apellido;
-        this.dni=dni;
-        this.fecha_alta=fecha_alta;
-        this.edad=edad;
-        this.activo=activo;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.fecha_alta = fecha_alta;
+        this.edad = edad;
+        this.activo = activo;
     }
 
     public String getNombre() {

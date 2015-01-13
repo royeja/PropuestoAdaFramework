@@ -4,29 +4,27 @@ import com.mobandme.ada.Entity;
 import com.mobandme.ada.annotations.Table;
 import com.mobandme.ada.annotations.TableField;
 
-import java.util.List;
-
 /**
  * Created by BrutslomPC on 08/01/2015.
  */
-@Table(name="profesor")
+@Table(name = "profesor")
 public class Profesor extends Entity {
-    @TableField(name= "numero_horas_clase", datatype = DATATYPE_INTEGER)
+    @TableField(name = "numero_horas_clase", datatype = DATATYPE_INTEGER)
     private int numero_horas_clase;
-    @TableField(name="nombre",datatype = DATATYPE_STRING, required = true)
+    @TableField(name = "nombre", datatype = DATATYPE_STRING, required = true)
     private String nombre;
-    @TableField(name="apellido",datatype = DATATYPE_STRING, required = true)
+    @TableField(name = "apellido", datatype = DATATYPE_STRING, required = true)
     private String apellido;
-    @TableField(name="dni",datatype = DATATYPE_STRING)
+    @TableField(name = "dni", datatype = DATATYPE_STRING)
     private String dni;
-    @TableField(name="fecha_alta",datatype = DATATYPE_DATE, required = true)
+    @TableField(name = "fecha_alta", datatype = DATATYPE_DATE, required = true)
     private String fecha_alta;
-    @TableField(name="edad",datatype = DATATYPE_INTEGER)
+    @TableField(name = "edad", datatype = DATATYPE_INTEGER)
     private int edad;
-    @TableField(name="activo",datatype = DATATYPE_BOOLEAN)
+    @TableField(name = "activo", datatype = DATATYPE_BOOLEAN)
     private boolean activo;
 
-    public Profesor(){
+    public Profesor() {
         super();
     }
 
