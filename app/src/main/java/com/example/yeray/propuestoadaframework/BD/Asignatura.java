@@ -9,14 +9,18 @@ import com.mobandme.ada.annotations.TableField;
  */
 @Table(name = "asignatura")
 public class Asignatura extends Entity {
+
     @TableField(name = "numero_maximo_alumnos", datatype = DATATYPE_INTEGER)
     private int numero_maximo_alumnos;
+
     @TableField(name = "nombre", datatype = DATATYPE_STRING, required = true)
     private String nombre;
-    @TableField(name = "precio_hora", datatype = DATATYPE_INTEGER)
+
+    @TableField(name = "precio_hora", datatype = DATATYPE_STRING)
     private String precio_hora;
+
     @TableField(name = "id_profesor", datatype = DATATYPE_ENTITY_LINK)
-    private Integer profesor;
+    private Profesor profesor;
 
     public Asignatura() {
         super();
@@ -46,11 +50,12 @@ public class Asignatura extends Entity {
         this.precio_hora = precio_hora;
     }
 
-    public Integer getProfesor() {
+    public Profesor getProfesor() {
         return profesor;
     }
 
-    public void setProfesor(Integer profesor) {
+    public void setProfesor(Profesor profesor) {
         this.profesor = profesor;
     }
+
 }

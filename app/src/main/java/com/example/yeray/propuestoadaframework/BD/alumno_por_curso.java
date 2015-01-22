@@ -12,35 +12,40 @@ import com.mobandme.ada.annotations.TableField;
 @Table(name = "alumno_por_curso")
 public class alumno_por_curso extends Entity {
 
-    @TableField(name = "id_curso", datatype = DATATYPE_ENTITY_LINK, required = true)
-    private Integer id_curso;
-    @TableField(name = "id_Alumno", datatype = DATATYPE_ENTITY_LINK, required = true)
-    private Integer id_Alumno;
+    /*
+    @TableField(name = "alumno", datatype =  DATATYPE_ENTITY_LINK)
+    private Alumno alumnos;
+    @TableField(name = "asignatura", datatype = DATATYPE_ENTITY_LINK)
+    private Asignatura asignatura;
+    */
+    @TableField(name = "dni", datatype = DATATYPE_STRING, required = true)
+    private String dni;
+    @TableField(name = "nombre", datatype = DATATYPE_STRING, required = true)
+    private String nombre;
 
-    public Integer getId_curso() {
-        return id_curso;
+    public alumno_por_curso(String nombre, String dni) {
+        this.nombre = nombre;
+        this.dni = dni;
     }
 
-    public void setId_curso(Integer id_curso) {
-        this.id_curso = id_curso;
+    public String getDni() {
+        return dni;
     }
 
-    public Integer getId_Alumno() {
-        return id_Alumno;
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
-    public void setId_Alumno(Integer id_Alumno) {
-        this.id_Alumno = id_Alumno;
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public alumno_por_curso() {
-        super();
-    }
 
-    public alumno_por_curso(Integer id_curso, Integer id_Alumno) {
-        super();
-        this.id_curso = id_curso;
-        this.id_Alumno = id_Alumno;
     }
 }
 

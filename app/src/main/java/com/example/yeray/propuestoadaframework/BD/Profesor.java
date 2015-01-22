@@ -24,10 +24,10 @@ public class Profesor extends Entity {
     @TableField(name = "activo", datatype = DATATYPE_BOOLEAN)
     private boolean activo;
 
+
     public Profesor() {
         super();
     }
-
 
     public int getNumero_horas_clase() {
         return numero_horas_clase;
@@ -52,7 +52,6 @@ public class Profesor extends Entity {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-
 
     public String getDni() {
         return dni;
