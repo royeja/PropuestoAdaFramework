@@ -2,6 +2,7 @@ package com.example.yeray.propuestoadaframework;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -9,7 +10,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 
+import com.example.yeray.propuestoadaframework.BD.AdaptadorBD;
 import com.example.yeray.propuestoadaframework.BD.Alumno;
 import com.example.yeray.propuestoadaframework.BD.Asignatura;
 import com.example.yeray.propuestoadaframework.BD.ContextoAplicacionDatos;
@@ -25,6 +28,8 @@ public class MainActivity extends Activity {
 
     ListView lista;
     private ContextoAplicacionDatos contexto;
+    AdaptadorBD Adaptador;
+    SimpleCursorAdapter cursorAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +38,50 @@ public class MainActivity extends Activity {
 
         try {
             contexto = new ContextoAplicacionDatos(this);
-            contexto.profDao.fill("name");
+            //contexto.profDao.fill("name");
             InsertarDatos();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        Adaptador = new AdaptadorBD(this);
+        Adaptador.open();
+
+        MostrarAlumnos();
+
+
+
+    }
+
+
+    public void MostrarAlumnos()
+    {
+        Cursor cursor = Adaptador.ObtenerAlumnos();
+
+        String[] columns = new String[] {"nombre","apellido","dni","fecha_alta","edad","activo"
+        };
+
+
+        int[] to = new int[] {
+               R.id.txtNombre_AL,
+                R.id.txtApellidos_AL,
+                R.id.txtDNI_AL,
+                R.id.txtFecha_AL,
+                R.id.txtEdadAL,
+                R.id.txtActivoAL
+        };
+
+        cursorAdapter = new SimpleCursorAdapter(
+                this, R.layout.alumnos_info,
+                cursor,
+                columns,
+                to,
+                0);
 
         lista = (ListView) findViewById(R.id.LvAlumnos);
+
+        lista.setAdapter(cursorAdapter);
+
 
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -53,8 +94,8 @@ public class MainActivity extends Activity {
             }
         });
 
-
     }
+
 
     void InsertarDatos() throws AdaFrameworkException {
 
@@ -423,7 +464,6 @@ public class MainActivity extends Activity {
         Log.i("Info", "Todo guardado con exito");
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

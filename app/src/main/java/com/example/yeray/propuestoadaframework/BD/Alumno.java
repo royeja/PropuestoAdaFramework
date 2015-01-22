@@ -15,14 +15,19 @@ public class Alumno extends Entity {
 
     @TableField(name = "nombre", datatype = DATATYPE_TEXT, required = true)
     private String nombre;
+
     @TableField(name = "apellido", datatype = DATATYPE_TEXT, required = true)
     private String apellido;
+
     @TableField(name = "dni", datatype = DATATYPE_TEXT, required = true)
     private String dni;
+
     @TableField(name = "fecha_alta", datatype = DATATYPE_DATE_BINARY, required = true)
     private Date fecha_alta;
+
     @TableField(name = "edad", datatype = DATATYPE_INTEGER, required = true)
     private Integer edad;
+
     @TableField(name = "activo", datatype = DATATYPE_BOOLEAN, required = true)
     private Boolean activo;
 
