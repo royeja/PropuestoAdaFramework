@@ -21,6 +21,7 @@ import com.example.yeray.propuestoadaframework.BD.alumno_por_curso;
 import com.mobandme.ada.Entity;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
 
+import java.io.File;
 import java.util.Date;
 
 
@@ -30,16 +31,22 @@ public class MainActivity extends Activity {
     private ContextoAplicacionDatos contexto;
     AdaptadorBD Adaptador;
     SimpleCursorAdapter cursorAdapter;
+    File archivo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        archivo = getApplicationContext().getDatabasePath("database.db");
+
+
         try {
             contexto = new ContextoAplicacionDatos(this);
-            //contexto.profDao.fill("name");
-            InsertarDatos();
+            if (archivo.exists() == false) {
+
+                InsertarDatos();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -48,22 +55,17 @@ public class MainActivity extends Activity {
         Adaptador.open();
 
         MostrarAlumnos();
-
-
-
     }
 
-
-    public void MostrarAlumnos()
-    {
+    public void MostrarAlumnos() {
         Cursor cursor = Adaptador.ObtenerAlumnos();
 
-        String[] columns = new String[] {"nombre","apellido","dni","fecha_alta","edad","activo"
+        String[] columns = new String[]{"nombre", "apellido", "dni", "fecha_alta", "edad", "activo"
         };
 
 
-        int[] to = new int[] {
-               R.id.txtNombre_AL,
+        int[] to = new int[]{
+                R.id.txtNombre_AL,
                 R.id.txtApellidos_AL,
                 R.id.txtDNI_AL,
                 R.id.txtFecha_AL,
@@ -495,7 +497,7 @@ public class MainActivity extends Activity {
     }
 
     public void añadiralumno() throws AdaFrameworkException {
-        Alumno al =new Alumno();
+        Alumno al = new Alumno();
         al.setNombre("");
         al.setApellido("");
         al.setDni("");
@@ -508,8 +510,9 @@ public class MainActivity extends Activity {
 
 
     }
+
     public void añadirProfesor() throws AdaFrameworkException {
-        Profesor p= new Profesor();
+        Profesor p = new Profesor();
         p.setActivo(false);
         p.setNumero_horas_clase(1);
         p.setFecha_alta(null);
@@ -521,6 +524,7 @@ public class MainActivity extends Activity {
         contexto.profDao.add(p);
         guardarcampos();
     }
+
     public void añadirAsignatura() throws AdaFrameworkException {
         Asignatura a = new Asignatura();
         a.setNombre("");
@@ -538,19 +542,22 @@ public class MainActivity extends Activity {
         a.setStatus(Entity.STATUS_DELETED);
         guardarcampos();
     }
+
     public void borrarasig(int asig) throws AdaFrameworkException {
         Asignatura as = new Asignatura();
         as = contexto.asigDao.get(asig);
         as.setStatus(Entity.STATUS_DELETED);
         guardarcampos();
     }
+
     public void borrarprof(int prof) throws AdaFrameworkException {
         Profesor p = new Profesor();
         p = contexto.profDao.get(prof);
         p.setStatus(Entity.STATUS_DELETED);
         guardarcampos();
     }
-    public void editaralumno(int alum) throws AdaFrameworkException{
+
+    public void editaralumno(int alum) throws AdaFrameworkException {
         Alumno a = new Alumno();
         a = contexto.alumnoDao.get(alum);
         a.setNombre("");
@@ -562,6 +569,7 @@ public class MainActivity extends Activity {
         a.setStatus(Entity.STATUS_UPDATED);
         guardarcampos();
     }
+
     public void editarasig(int asig) throws AdaFrameworkException {
         Asignatura as = new Asignatura();
         as = contexto.asigDao.get(asig);
@@ -572,6 +580,7 @@ public class MainActivity extends Activity {
         as.setStatus(Entity.STATUS_UPDATED);
         guardarcampos();
     }
+
     public void editarprof(int prof) throws AdaFrameworkException {
         Profesor p = new Profesor();
         p = contexto.profDao.get(prof);

@@ -1,19 +1,15 @@
 package com.example.yeray.propuestoadaframework.BD;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 /**
  * Created by Yeray on 22/01/2015.
  */
 public class AdaptadorBD {
-
-    public static final String KEY_ROWID = "id";
 
     private DatabaseHelper mDbHelper;
     private SQLiteDatabase mDb;
@@ -45,10 +41,9 @@ public class AdaptadorBD {
         this.mCtx = ctx;
     }
 
-    public Cursor ObtenerAlumnos()
-    {
-        Cursor mCursor = mDb.rawQuery("Select id as _id, nombre, apellido, dni, fecha_alta, edad," +
-                "activo FROM alumno",null);
+    public Cursor ObtenerAlumnos() {
+        Cursor mCursor = mDb.rawQuery("Select DISTINCT id as _id, nombre, apellido, dni, fecha_alta, edad," +
+                "activo FROM alumno ORDER BY nombre ASC", null);
 
                 /*query("alumno", new String[] {KEY_ROWID,
                         "nombre","apellido","dni","fecha_alta","edad","activo"},
@@ -73,10 +68,6 @@ public class AdaptadorBD {
             mDbHelper.close();
         }
     }
-
-
-
-
 
 
 }
