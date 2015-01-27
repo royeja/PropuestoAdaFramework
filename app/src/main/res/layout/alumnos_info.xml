@@ -1,36 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre y apellidos: "
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txtNombre_AL"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/txtApellidos_AL"
+        android:layout_marginRight="3dp"
+        android:layout_toEndOf="@+id/nombre"
+        android:text="posicion"
+        android:textSize="17dp" />
+
 
     <TextView
         android:id="@+id/txtApellidos_AL"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/nombre"
+        android:layout_alignBottom="@+id/nombre"
+        android:layout_toEndOf="@+id/txtNombre_AL"
+        android:text="posicion"
+        android:textSize="17dp" />
+
+    <TextView
+        android:id="@+id/dni"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/nombre"
+        android:text="DNI: "
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txtDNI_AL"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/dni"
+        android:layout_alignBottom="@+id/dni"
+        android:layout_toEndOf="@+id/dni"
+        android:text="posicion"
+        android:textSize="17dp" />
+
+
+    <TextView
+        android:id="@+id/fecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dni"
+        android:text="Fecha alta: "
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txtFecha_AL"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/fecha"
+        android:layout_alignBottom="@+id/fecha"
+        android:layout_toEndOf="@+id/fecha"
+        android:text="posicion"
+        android:textSize="17dp" />
+
+
+    <TextView
+        android:id="@+id/edad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fecha"
+        android:text="Edad: "
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txtEdadAL"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/edad"
+        android:layout_alignBottom="@+id/edad"
+        android:layout_toEndOf="@+id/edad"
+        android:text="posicion"
+        android:textSize="17dp" />
+
+
+    <TextView
+        android:id="@+id/activo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edad"
+        android:layout_marginBottom="15dp"
+        android:text="Activo: "
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txtActivoAL"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/activo"
+        android:layout_alignBottom="@+id/activo"
+        android:layout_toEndOf="@+id/activo"
+        android:text="posicion"
+        android:textSize="17dp" />
 
-</LinearLayout>
+
+</RelativeLayout>

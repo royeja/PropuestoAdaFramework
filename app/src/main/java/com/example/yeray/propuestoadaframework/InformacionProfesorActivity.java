@@ -40,28 +40,33 @@ public class InformacionProfesorActivity extends Activity {
         Adaptador.open();
 
         Bundle b = getIntent().getExtras();
-        lista = (ListView) findViewById(R.id.LvAsignaturas);
+        lista = (ListView) findViewById(R.id.LvInformacionProfesor);
 
-        MostrarAsignaturasAlumno(b.getLong("id"));
+        MostrarDatosProfesor(b.getLong("id"));
 
 
     }
 
 
-    public void MostrarAsignaturasAlumno(long d) {
+    public void MostrarDatosProfesor(long d) {
 
-        Cursor cursor = Adaptador.ObtenerAsignaturasAlumno(d);
+        Cursor cursor = Adaptador.ObtenerDatosProfesor(d);
 
-        String[] columns = new String[]{"dni", "nombre"};
+        String[] columns = new String[]{"nombre", "apellido", "dni", "edad", "fecha_alta", "activo", "numero_horas_clase"};
 
 
         int[] to = new int[]{
-                R.id.txtNOMBRE_AL_ASIG,
-                R.id.txtDNI_AL_ASIG,
+                R.id.nombre_PROFE,
+                R.id.apellido_PROFE,
+                R.id.dni_PROFE,
+                R.id.edadPROFE,
+                R.id.fecha_PROFE,
+                R.id.activoPROFE,
+                R.id.horasPROFE
         };
 
         cursorAdapter = new SimpleCursorAdapter(
-                this, R.layout.asignaturas_alumno_info,
+                this, R.layout.profesor_info,
                 cursor,
                 columns,
                 to,

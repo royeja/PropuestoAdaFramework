@@ -102,6 +102,27 @@ public class AdaptadorBD {
         return mCursor;
     }
 
+    public Cursor ObtenerDatosProfesor(long id) {
+
+        Cursor idProfesor = mDb.rawQuery("Select DISTINCT profesor_ID FROM LINK_asignatura_id_profesor_profesor" +
+                " WHERE asignatura_ID=" + id, null);
+
+        idProfesor.moveToFirst();
+
+        String profe = idProfesor.getString(0);
+
+
+        Cursor mCursor = mDb.rawQuery("Select DISTINCT id as _id, apellido, dni, " +
+                "fecha_alta, nombre, activo, edad, numero_horas_clase FROM profesor" +
+                " WHERE id='" + profe + "'", null);
+
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+        return mCursor;
+
+    }
+
 
     public AdaptadorBD open() throws SQLException {
         mDbHelper = new DatabaseHelper(mCtx);
