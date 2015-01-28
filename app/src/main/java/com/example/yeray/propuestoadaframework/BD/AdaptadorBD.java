@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.mobandme.ada.Entity;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
 
+import java.util.Date;
+
 /**
  * Created by Yeray on 22/01/2015.
  */
@@ -146,14 +148,14 @@ public class AdaptadorBD {
         contexto.alumno_por_cursoDao.save();
     }
 
-    public void añadiralumno() throws AdaFrameworkException {
+    public void añadiralumno(String nombre, String apellido, String dni, int edad, Date fecha, Boolean activo) throws AdaFrameworkException {
         Alumno al = new Alumno();
-        al.setNombre("");
-        al.setApellido("");
-        al.setDni("");
-        al.setEdad(5);
-        al.setFecha_alta(null);
-        al.setActivo(null);
+        al.setNombre(nombre);
+        al.setApellido(apellido);
+        al.setDni(dni);
+        al.setEdad(edad);
+        al.setFecha_alta(fecha);
+        al.setActivo(activo);
         al.setStatus(Entity.STATUS_NEW);
         contexto.alumnoDao.add(al);
         guardarcampos();
@@ -186,10 +188,11 @@ public class AdaptadorBD {
         guardarcampos();
     }
 
-    public void borraralum(int alum) throws AdaFrameworkException {
+    public void borraralum(long alum) throws AdaFrameworkException {
         Alumno a = new Alumno();
-        a = contexto.alumnoDao.get(alum);
+        a = contexto.alumnoDao.get((int) alum);
         a.setStatus(Entity.STATUS_DELETED);
+        //contexto.alumnoDao.remove((int)alum);
         guardarcampos();
     }
 

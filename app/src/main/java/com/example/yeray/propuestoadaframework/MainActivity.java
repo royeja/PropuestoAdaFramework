@@ -1,6 +1,8 @@
 package com.example.yeray.propuestoadaframework;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -92,6 +94,39 @@ public class MainActivity extends Activity {
 
                 startActivity(i);
 
+            }
+        });
+
+        lista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+
+                final long posicion = id;
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setMessage("¿Desea eliminar este alumno?")
+                        .setCancelable(true)
+                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+
+                                try {
+                                    Adaptador.borraralum(posicion);
+                                    MostrarAlumnos();
+                                } catch (AdaFrameworkException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+
+                return true;
             }
         });
 
@@ -482,12 +517,15 @@ public class MainActivity extends Activity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.Nuevo_contacto) {
+
+            Intent i = new Intent(MainActivity.this, InsertarAlumnoActivity.class);
+            startActivityForResult(i, 1);
+
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
-
 
 
 }
