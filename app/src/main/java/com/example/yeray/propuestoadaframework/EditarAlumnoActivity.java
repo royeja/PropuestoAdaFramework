@@ -15,6 +15,7 @@ import com.example.yeray.propuestoadaframework.BD.ContextoAplicacionDatos;
 import com.mobandme.ada.Entity;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -32,13 +33,13 @@ public class EditarAlumnoActivity extends Activity {
     Button editar;
     private ContextoAplicacionDatos contexto;
     AdaptadorBD Adaptador;
-    Alumno a = new Alumno();
+    Alumno a;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.insertar_alumno);
+        setContentView(R.layout.editar_alumno);
 
         try {
             contexto = new ContextoAplicacionDatos(this);
@@ -47,6 +48,7 @@ public class EditarAlumnoActivity extends Activity {
         }
 
         Adaptador = new AdaptadorBD(this, contexto);
+        Adaptador.open();
 
 
         nombre = (EditText) findViewById(R.id.editar_alumno_nombre);
@@ -69,16 +71,20 @@ public class EditarAlumnoActivity extends Activity {
         activo.setAdapter(adapter);
 
 
-        int pos=getIntent().getExtras().getInt("pos");
+        int pos = (int) getIntent().getExtras().getLong("pos");
 
-        a = contexto.alumnoDao.get(pos);
+        try {
+            a = Adaptador.ObtenerAlumno(pos);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         nombre.setText(a.getNombre());
         apellido.setText(a.getApellido());
         dni.setText(a.getDni());
-        edad.setText(a.getEdad());
+        edad.setText(a.getEdad().toString());
         if(a.getActivo()) activo.setSelection(1);
         else activo.setSelection(0);
-        fecha.updateDate(a.getFecha_alta().getYear(),a.getFecha_alta().getMonth(),a.getFecha_alta().getDay());
+        //fecha.updateDate(a.getFecha_alta().getYear(),a.getFecha_alta().getMonth(),a.getFecha_alta().getDay());
 
 
 
@@ -105,10 +111,11 @@ public class EditarAlumnoActivity extends Activity {
                     e.printStackTrace();
                 }
 
+                finish();
+
             }
         });
 
-        this.finish();
 
     }
 }

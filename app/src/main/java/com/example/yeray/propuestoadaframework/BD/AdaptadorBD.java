@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.mobandme.ada.Entity;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -52,10 +54,6 @@ public class AdaptadorBD {
     public Cursor ObtenerAlumnos() {
         Cursor mCursor = mDb.rawQuery("Select DISTINCT id as _id, nombre, apellido, dni, fecha_alta, edad," +
                 "activo FROM alumno ORDER BY nombre ASC", null);
-
-                /*query("alumno", new String[] {KEY_ROWID,
-                        "nombre","apellido","dni","fecha_alta","edad","activo"},
-                null, null, null, null, null);*/
 
         if (mCursor != null) {
             mCursor.moveToFirst();
@@ -122,6 +120,32 @@ public class AdaptadorBD {
             mCursor.moveToFirst();
         }
         return mCursor;
+
+    }
+
+    public Alumno ObtenerAlumno(long numero) throws ParseException {
+        Cursor mCursor = mDb.rawQuery("Select nombre, apellido, dni, fecha_alta, edad," +
+                "activo FROM alumno WHERE id=" + numero, null);
+
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+
+        Alumno a = new Alumno();
+
+        a.setNombre(mCursor.getString(0));
+        a.setApellido(mCursor.getString(1));
+        a.setEdad(mCursor.getInt(4));
+        a.setDni(mCursor.getString(2));
+
+        Boolean activo = false;
+        if (mCursor.getInt(5) == 1) {
+
+            activo = true;
+        }
+        a.setActivo(activo);
+
+        return a;
 
     }
 
@@ -210,7 +234,7 @@ public class AdaptadorBD {
         guardarcampos();
     }
 
-    public void editaralumno(Alumno al,String nombre, String apellido, String dni, int edad, Date fecha, Boolean activo) throws AdaFrameworkException {
+    public void editaralumno(Alumno al, String nombre, String apellido, String dni, int edad, Date fecha, Boolean activo) throws AdaFrameworkException {
 
         al.setNombre(nombre);
         al.setApellido(apellido);

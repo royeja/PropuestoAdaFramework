@@ -89,10 +89,11 @@ public class InsertarAlumnoActivity extends Activity {
                     e.printStackTrace();
                 }
 
+                finish();
+
             }
         });
 
-        this.finish();
 
     }
 }

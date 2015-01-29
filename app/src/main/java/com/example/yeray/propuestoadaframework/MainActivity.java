@@ -56,44 +56,9 @@ public class MainActivity extends Activity {
         Adaptador = new AdaptadorBD(this, contexto);
         Adaptador.open();
 
-        registerForContextMenu(lista);
 
-        MostrarAlumnos();
     }
 
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        MenuInflater inflater = getMenuInflater();
-
-        AdapterView.AdapterContextMenuInfo info =
-                (AdapterView.AdapterContextMenuInfo) menuInfo;
-
-        menu.setHeaderTitle(
-                lista.getAdapter().getItem(info.position).toString());
-
-        inflater.inflate(R.menu.menu_contextual, menu);
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        super.onContextItemSelected(item);
-        AdapterView.AdapterContextMenuInfo info =
-        (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-
-        switch (item.getItemId()) {
-            case R.id.OpcBorrar:
-                //borrar
-                return true;
-            case R.id.OpcEditar:
-                Intent intent = new Intent(MainActivity.this, EditarAlumnoActivity.class);
-                intent.putExtra("pos", info.position);
-                startActivity(intent);
-                return true;
-            default:
-                return super.onContextItemSelected(item);
-        }
-    }
 
     public void MostrarAlumnos() {
         Cursor cursor = Adaptador.ObtenerAlumnos();
@@ -141,9 +106,17 @@ public class MainActivity extends Activity {
 
                 final long posicion = id;
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setMessage("¿Desea eliminar este alumno?")
+                builder.setMessage("Que desea hacer?")
                         .setCancelable(true)
-                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                        .setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                dialog.cancel();
+
+                            }
+                        })
+                        .setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
 
@@ -156,11 +129,17 @@ public class MainActivity extends Activity {
 
                             }
                         })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        .setNegativeButton("Modificar", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
+
+                                Intent i = new Intent(MainActivity.this, EditarAlumnoActivity.class);
+                                i.putExtra("pos", posicion);
+                                startActivity(i);
+
                             }
                         });
+
+
                 AlertDialog alert = builder.create();
                 alert.show();
 
@@ -565,5 +544,10 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+        MostrarAlumnos();
+    }
 }
