@@ -210,16 +210,15 @@ public class AdaptadorBD {
         guardarcampos();
     }
 
-    public void editaralumno(int alum) throws AdaFrameworkException {
-        Alumno a = new Alumno();
-        a = contexto.alumnoDao.get(alum);
-        a.setNombre("");
-        a.setApellido("");
-        a.setDni("");
-        a.setEdad(5);
-        a.setFecha_alta(null);
-        a.setActivo(null);
-        a.setStatus(Entity.STATUS_UPDATED);
+    public void editaralumno(Alumno al,String nombre, String apellido, String dni, int edad, Date fecha, Boolean activo) throws AdaFrameworkException {
+
+        al.setNombre(nombre);
+        al.setApellido(apellido);
+        al.setDni(dni);
+        al.setEdad(edad);
+        al.setFecha_alta(fecha);
+        al.setActivo(activo);
+        al.setStatus(Entity.STATUS_UPDATED);
         guardarcampos();
     }
 

@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -54,7 +56,43 @@ public class MainActivity extends Activity {
         Adaptador = new AdaptadorBD(this, contexto);
         Adaptador.open();
 
+        registerForContextMenu(lista);
+
         MostrarAlumnos();
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+
+        AdapterView.AdapterContextMenuInfo info =
+                (AdapterView.AdapterContextMenuInfo) menuInfo;
+
+        menu.setHeaderTitle(
+                lista.getAdapter().getItem(info.position).toString());
+
+        inflater.inflate(R.menu.menu_contextual, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        super.onContextItemSelected(item);
+        AdapterView.AdapterContextMenuInfo info =
+        (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+        switch (item.getItemId()) {
+            case R.id.OpcBorrar:
+                //borrar
+                return true;
+            case R.id.OpcEditar:
+                Intent intent = new Intent(MainActivity.this, EditarAlumnoActivity.class);
+                intent.putExtra("pos", info.position);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 
     public void MostrarAlumnos() {
